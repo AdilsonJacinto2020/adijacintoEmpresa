@@ -11,8 +11,8 @@ import { OrcamentoModule } from './orcamento/orcamento.module';
       transport: {
         service: 'gmail',
         auth: {
-          user: 'adijacinto.aj@gmail.com',
-          pass: 'znkk extq bvpd xfkp',
+          user: process.env.MAIL_USER,
+          pass: process.env.MAIL_PASS,
         },
       },
     }),
