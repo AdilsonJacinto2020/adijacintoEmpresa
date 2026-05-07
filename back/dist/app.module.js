@@ -12,6 +12,7 @@ const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
 const contact_module_1 = require("./contact/contact.module");
 const mailer_1 = require("@nestjs-modules/mailer");
+const orcamento_module_1 = require("./orcamento/orcamento.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -28,6 +29,7 @@ exports.AppModule = AppModule = __decorate([
                 },
             }),
             contact_module_1.ContactModule,
+            orcamento_module_1.OrcamentoModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

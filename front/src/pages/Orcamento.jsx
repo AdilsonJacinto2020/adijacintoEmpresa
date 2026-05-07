@@ -25,9 +25,17 @@ export default function Orcamento() {
 
   const handle = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 
-  const submit = (e) => {
+  const submit = async (e) => {
     e.preventDefault();
     // Aqui integraria com backend / EmailJS / Formspree
+    await fetch ("http://localhost:3000/orcamento",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(form)
+        });
     setSent(true);
   };
 

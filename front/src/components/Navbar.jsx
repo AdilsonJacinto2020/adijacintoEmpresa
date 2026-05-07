@@ -32,7 +32,7 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
         {/* Logo */}
-        <Link to="/" className="flex items-center gap-3 group">
+        <Link to="/adijacintoEmpresa" className="flex items-center gap-3 group">
           <div className="relative w-8 h-8">
             <div className="absolute inset-[3px] bg-[#0a0a0a] rounded-sm rotate-45" />
           </div>

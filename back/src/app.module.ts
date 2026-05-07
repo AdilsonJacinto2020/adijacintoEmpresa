@@ -3,6 +3,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ContactModule } from './contact/contact.module';
 import { MailerModule } from '@nestjs-modules/mailer';
+import { OrcamentoModule } from './orcamento/orcamento.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { MailerModule } from '@nestjs-modules/mailer';
       },
     }),
     ContactModule,
+    OrcamentoModule,
   ],
   controllers: [AppController],
   providers: [AppService],

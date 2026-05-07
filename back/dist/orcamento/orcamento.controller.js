@@ -12,29 +12,29 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ContactController = void 0;
+exports.OrcamentoController = void 0;
 const common_1 = require("@nestjs/common");
-const contact_service_1 = require("./contact.service");
-let ContactController = class ContactController {
-    contactService;
-    constructor(contactService) {
-        this.contactService = contactService;
+const orcamento_service_1 = require("./orcamento.service");
+let OrcamentoController = class OrcamentoController {
+    orcamentoService;
+    constructor(orcamentoService) {
+        this.orcamentoService = orcamentoService;
     }
-    async send(body) {
-        await this.contactService.sendEmail(body);
-        return { mensagem: 'Email enviado com sucesso' };
+    async sendEmail(body) {
+        await this.orcamentoService.sendEmail(body);
+        return { mensagem: 'orcamento enviado com sucesso' };
     }
 };
-exports.ContactController = ContactController;
+exports.OrcamentoController = OrcamentoController;
 __decorate([
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
-], ContactController.prototype, "send", null);
-exports.ContactController = ContactController = __decorate([
-    (0, common_1.Controller)('contact'),
-    __metadata("design:paramtypes", [contact_service_1.ContactService])
-], ContactController);
-//# sourceMappingURL=contact.controller.js.map
+], OrcamentoController.prototype, "sendEmail", null);
+exports.OrcamentoController = OrcamentoController = __decorate([
+    (0, common_1.Controller)('orcamento'),
+    __metadata("design:paramtypes", [orcamento_service_1.OrcamentoService])
+], OrcamentoController);
+//# sourceMappingURL=orcamento.controller.js.map
