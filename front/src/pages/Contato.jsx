@@ -8,7 +8,7 @@ export default function Contato() {
   const handle = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 
   const submit = async (e) => {
-    const allow_root = import.meta.env.VITE_BACKEND_URL || "http://localhost:3000/orcamento";
+    const allow_root = (import.meta.env.VITE_BACKEND_URL || "http://localhost:3000") + "/contact";
     e.preventDefault();
     await fetch(allow_root, {
       method: "POST",

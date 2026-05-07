@@ -24,7 +24,7 @@ export default function Orcamento() {
   const [sent, setSent] = useState(false);
 
   const handle = (e) => setForm({ ...form, [e.target.name]: e.target.value });
-  const allow_root = import.meta.env.VITE_BACKEND_URL || "http://localhost:3000/orcamento";
+  const allow_root = (import.meta.env.VITE_BACKEND_URL || "http://localhost:3000") + "/orcamento";
   const submit = async (e) => {
     e.preventDefault();
     // Aqui integraria com backend / EmailJS / Formspree
