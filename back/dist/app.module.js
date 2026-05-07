@@ -23,7 +23,7 @@ exports.AppModule = AppModule = __decorate([
             config_1.ConfigModule.forRoot({ isGlobal: true }),
             mailer_1.MailerModule.forRoot({
                 transport: {
-                    host: 'smpt.gmail.com',
+                    host: 'smtp.gmail.com',
                     port: 587,
                     secure: false,
                     auth: {

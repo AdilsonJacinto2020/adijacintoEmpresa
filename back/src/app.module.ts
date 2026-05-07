@@ -11,7 +11,7 @@ import { ConfigModule } from '@nestjs/config';
     ConfigModule.forRoot({ isGlobal: true }),
     MailerModule.forRoot({
       transport: {
-        host: 'smpt.gmail.com',
+        host: 'smtp.gmail.com',
         port: 587,
         secure: false,
         auth: {
