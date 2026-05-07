@@ -20,7 +20,7 @@ let ContactService = class ContactService {
     async sendEmail(data) {
         const { nome, email, mensagem } = data;
         await this.mailService.sendMail({
-            to: 'adijacinto.aj@gmail.com',
+            to: process.env.MAIL_USER,
             subject: `Nova mensagem de ${nome}`,
             text: `
             Nome ${nome}

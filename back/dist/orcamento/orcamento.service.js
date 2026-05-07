@@ -20,7 +20,7 @@ let OrcamentoService = class OrcamentoService {
     async sendEmail(data) {
         const { nome, empresa, email, telefone, servico, orcamento, descricao } = data;
         await this.mailService.sendMail({
-            to: 'adijacinto.aj@gmail.com',
+            to: process.env.MAIL_USER,
             subject: `Pedido de orçamento ${nome}`,
             text: `O cliente ${nome} com a empresa ${empresa}
       e email ${email} e telefone ${telefone} pretende
