@@ -14,7 +14,7 @@ export default function App() {
         <Navbar />
         <main className="flex-1">
           <Routes>
-            <Route path="/adijacintoEmpresa" element={<Home />} />
+            <Route path="/" element={<Home />} />
             <Route path="/servicos" element={<Servicos />} />
             <Route path="/sobre" element={<SobreNos />} />
             <Route path="/orcamento" element={<Orcamento />} />
