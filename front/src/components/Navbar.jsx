@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import foto from '../assets/images/logo.png'
+import fotoMobile from '../assets/images/icon.png'
 const links = [
   { to: "/", label: "Início" },
   { to: "/servicos", label: "Serviços" },
@@ -12,16 +13,24 @@ const links = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [ isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const location = useLocation();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 30);
+    const onResize = () => setIsMobile(window.innerWidth < 768);
+    
     window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
+    window.addEventListener("resize", onResize);
+    return () => 
+      { window.removeEventListener("resize", onResize);
+        window.removeEventListener("scroll", onScroll);
+      }
+
   }, []);
 
   useEffect(() => setOpen(false), [location]);
-
+  
   return (
     <header
       className={`fixed top-0 w-full z-50 transition-all duration-500 ${
@@ -37,7 +46,7 @@ export default function Navbar() {
             <div className="absolute inset-[3px] bg-[#0a0a0a] rounded-sm rotate-45" />
           </div>
           <span className="font-bold text-lg tracking-[0.2em] uppercase text-white">
-            <img className="w-18 h-20" src={foto} alt="" /> </span>
+            <img className="w-18 h-20" src={ isMobile ? fotoMobile:  foto} alt="" /> </span>
         </Link>
 
         {/* Desktop Nav */}
