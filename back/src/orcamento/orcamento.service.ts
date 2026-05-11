@@ -1,18 +1,34 @@
-import { MailerService } from '@nestjs-modules/mailer';
 import { Injectable } from '@nestjs/common';
+import { Resend } from 'resend';
 
 @Injectable()
 export class OrcamentoService {
-  constructor(private mailService: MailerService) {}
-  async sendEmail(data: any) {
+  private resend: Resend;
+
+  constructor() {
+    this.resend = new Resend(process.env.RESEND_API_KEY);
+  }
+  async send(data: any) {
     const { nome, empresa, email, telefone, servico, orcamento, descricao} = data;
-    await this.mailService.sendMail({
-      to: process.env.MAIL_USER,
-      subject: `Pedido de orçamento ${nome}`,
-      text: `O cliente ${nome} com a empresa ${empresa}
-      e email ${email} e telefone ${telefone} pretende
-      o serviço ${servico} com esse ${orcamento}, esse 
-      são os detalhes ${descricao}`,
+
+    await this.resend.emails.send({
+      from: 'onboarding@resend.dev',
+
+      to: process.env.MAIL_USER || '',
+
+      subject: `Pedido de orçamento de ${nome}`,
+
+      html: `
+        <h2> Pedido de Orçamento </h2>
+
+        <p>A cliente <strong>Nome:</strong> ${nome} com a empresa ${empresa}</p>
+
+        <p>Com o telefone ${telefone}e email<strong>Email:</strong> ${email}</p>
+
+        <p>Pretende o serviço ${servico} com o orçamento de ${orcamento}</p>
+
+        <p>Com essa descrição${descricao}</p>
+      `,
     });
   }
 }

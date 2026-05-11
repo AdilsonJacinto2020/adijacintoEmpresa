@@ -5,8 +5,8 @@ import { OrcamentoService } from './orcamento.service';
 export class OrcamentoController {
   constructor(private orcamentoService: OrcamentoService) {}
   @Post()
-  async sendEmail(@Body() body: any) {
-    await this.orcamentoService.sendEmail(body);
+  async send(@Body() body: any) {
+    await this.orcamentoService.send(body);
     return { mensagem: 'orcamento enviado com sucesso' };
   }
 }

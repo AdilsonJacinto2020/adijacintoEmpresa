@@ -20,8 +20,8 @@ let OrcamentoController = class OrcamentoController {
     constructor(orcamentoService) {
         this.orcamentoService = orcamentoService;
     }
-    async sendEmail(body) {
-        await this.orcamentoService.sendEmail(body);
+    async send(body) {
+        await this.orcamentoService.send(body);
         return { mensagem: 'orcamento enviado com sucesso' };
     }
 };
@@ -32,7 +32,7 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
-], OrcamentoController.prototype, "sendEmail", null);
+], OrcamentoController.prototype, "send", null);
 exports.OrcamentoController = OrcamentoController = __decorate([
     (0, common_1.Controller)('orcamento'),
     __metadata("design:paramtypes", [orcamento_service_1.OrcamentoService])

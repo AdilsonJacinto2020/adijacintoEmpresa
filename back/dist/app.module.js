@@ -11,7 +11,6 @@ const common_1 = require("@nestjs/common");
 const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
 const contact_module_1 = require("./contact/contact.module");
-const mailer_1 = require("@nestjs-modules/mailer");
 const orcamento_module_1 = require("./orcamento/orcamento.module");
 const config_1 = require("@nestjs/config");
 let AppModule = class AppModule {
@@ -21,17 +20,6 @@ exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
             config_1.ConfigModule.forRoot({ isGlobal: true }),
-            mailer_1.MailerModule.forRoot({
-                transport: {
-                    host: 'smtp.gmail.com',
-                    port: 587,
-                    secure: false,
-                    auth: {
-                        user: process.env.MAIL_USER,
-                        pass: process.env.MAIL_PASS,
-                    },
-                },
-            }),
             contact_module_1.ContactModule,
             orcamento_module_1.OrcamentoModule,
         ],

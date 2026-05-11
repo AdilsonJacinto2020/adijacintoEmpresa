@@ -10,28 +10,36 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.OrcamentoService = void 0;
-const mailer_1 = require("@nestjs-modules/mailer");
 const common_1 = require("@nestjs/common");
+const resend_1 = require("resend");
 let OrcamentoService = class OrcamentoService {
-    mailService;
-    constructor(mailService) {
-        this.mailService = mailService;
+    resend;
+    constructor() {
+        this.resend = new resend_1.Resend(process.env.RESEND_API_KEY);
     }
-    async sendEmail(data) {
+    async send(data) {
         const { nome, empresa, email, telefone, servico, orcamento, descricao } = data;
-        await this.mailService.sendMail({
-            to: process.env.MAIL_USER,
-            subject: `Pedido de orçamento ${nome}`,
-            text: `O cliente ${nome} com a empresa ${empresa}
-      e email ${email} e telefone ${telefone} pretende
-      o serviço ${servico} com esse ${orcamento}, esse 
-      são os detalhes ${descricao}`,
+        await this.resend.emails.send({
+            from: 'onboarding@resend.dev',
+            to: process.env.MAIL_USER || '',
+            subject: `Pedido de orçamento de ${nome}`,
+            html: `
+        <h2> Pedido de Orçamento </h2>
+
+        <p>A cliente <strong>Nome:</strong> ${nome} com a empresa ${empresa}</p>
+
+        <p>Com o telefone ${telefone}e email<strong>Email:</strong> ${email}</p>
+
+        <p>Pretende o serviço ${servico} com o orçamento de ${orcamento}</p>
+
+        <p>Com essa descrição${descricao}</p>
+      `,
         });
     }
 };
 exports.OrcamentoService = OrcamentoService;
 exports.OrcamentoService = OrcamentoService = __decorate([
     (0, common_1.Injectable)(),
-    __metadata("design:paramtypes", [mailer_1.MailerService])
+    __metadata("design:paramtypes", [])
 ], OrcamentoService);
 //# sourceMappingURL=orcamento.service.js.map

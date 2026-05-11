@@ -10,28 +10,34 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ContactService = void 0;
-const mailer_1 = require("@nestjs-modules/mailer");
 const common_1 = require("@nestjs/common");
+const resend_1 = require("resend");
 let ContactService = class ContactService {
-    mailService;
-    constructor(mailService) {
-        this.mailService = mailService;
+    resend;
+    constructor() {
+        this.resend = new resend_1.Resend(process.env.RESEND_API_KEY);
     }
     async sendEmail(data) {
         const { nome, email, mensagem } = data;
-        await this.mailService.sendMail({
-            to: process.env.MAIL_USER,
+        await this.resend.emails.send({
+            from: 'onboarding@resend.dev',
+            to: process.env.MAIL_USER || '',
             subject: `Nova mensagem de ${nome}`,
-            text: `
-            Nome ${nome}
-            Email ${email}
-            Mensagem ${mensagem}`,
+            html: `
+        <h2>Nova mensagem</h2>
+
+        <p><strong>Nome:</strong> ${nome}</p>
+
+        <p><strong>Email:</strong> ${email}</p>
+
+        <p>${mensagem}</p>
+      `,
         });
     }
 };
 exports.ContactService = ContactService;
 exports.ContactService = ContactService = __decorate([
     (0, common_1.Injectable)(),
-    __metadata("design:paramtypes", [mailer_1.MailerService])
+    __metadata("design:paramtypes", [])
 ], ContactService);
 //# sourceMappingURL=contact.service.js.map
