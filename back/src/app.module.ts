@@ -18,6 +18,10 @@ import { ConfigModule } from '@nestjs/config';
           user: process.env.MAIL_USER,
           pass: process.env.MAIL_PASS,
         },
+
+        tls: {
+          rejectUnauthorized: false,
+        },
       },
     }),
     ContactModule,
