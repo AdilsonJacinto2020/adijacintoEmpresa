@@ -2,3 +2,4 @@
 ./back/node_modules
 ./front/.env.local
 ./back/.env.local
+MELHORIAS_UI_UX.md

@@ -1,64 +1,110 @@
 import { Link } from "react-router-dom";
-import foto from '../assets/images/logo.png'
+import { ArrowUpRight, Mail, Phone, MapPin, Heart } from "lucide-react";
+import foto from "../assets/images/logo.png";
+
 export default function Footer() {
   return (
-    <footer className="bg-[#050505] border-t border-white/10">
-      <div className="max-w-7xl mx-auto px-6 py-16 grid md:grid-cols-4 gap-12">
-        {/* Brand */}
-        <div className="md:col-span-2">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="relative w-7 h-7">
-              <div className="absolute inset-[3px] bg-[#050505] rounded-sm rotate-45" />
-            </div>
-            <span className="font-bold text-lg tracking-[0.2em] uppercase">
-              <img className="w-18 h-20" src={foto} alt="" />
-            </span>
+    <footer className="bg-[#050608] border-t border-white/10 relative overflow-hidden">
+      {/* Decorative background glow */}
+      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-[#00d4ff]/5 rounded-full blur-[140px] pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-12 gap-12 relative z-10">
+        {/* Brand Section */}
+        <div className="md:col-span-5 flex flex-col justify-between">
+          <div>
+            <Link to="/" className="inline-block mb-6">
+              <img className="h-10 md:h-12 w-auto object-contain" src={foto} alt="AdiJacinto" />
+            </Link>
+            <p className="text-slate-400 text-sm leading-relaxed max-w-sm mb-6">
+              Soluções digitais modernas, seguras e personalizadas para empresas angolanas acelerarem sua transformação tecnológica e vendas.
+            </p>
           </div>
-          <p className="text-white/50 text-sm leading-relaxed max-w-xs">
-            Soluções digitais modernas para empresas angolanas que querem crescer com tecnologia.
-          </p>
-          <div className="flex gap-4 mt-6">
-            {["LinkedIn", "Instagram", "Facebook"].map((s) => (
-              <a key={s} href="#" className="text-xs text-white/40 hover:text-[#00d4ff] uppercase tracking-wider transition-colors">
-                {s}
+
+          <div className="flex items-center gap-3">
+            {[
+              { label: "LinkedIn", url: "https://linkedin.com" },
+              { label: "Instagram", url: "https://instagram.com" },
+              { label: "Facebook", url: "https://facebook.com" },
+            ].map(({ label, url }) => (
+              <a
+                key={label}
+                href={url}
+                target="_blank"
+                rel="noreferrer"
+                className="px-3.5 py-1.5 rounded-full border border-white/10 text-xs font-semibold uppercase tracking-wider text-slate-400 hover:text-[#00d4ff] hover:border-[#00d4ff]/40 hover:bg-[#00d4ff]/5 transition-all"
+              >
+                {label}
               </a>
             ))}
           </div>
         </div>
 
-        {/* Links */}
-        <div>
-          <h4 className="text-xs font-bold uppercase tracking-[0.2em] text-white/40 mb-4">Navegação</h4>
-          <ul className="space-y-2">
+        {/* Links Navigation */}
+        <div className="md:col-span-3">
+          <h4 className="text-xs font-bold uppercase tracking-[0.2em] text-[#00d4ff] mb-6">Navegação Rápida</h4>
+          <ul className="space-y-3.5">
             {[
               { to: "/", label: "Início" },
-              { to: "/servicos", label: "Serviços" },
-              { to: "/sobre", label: "Sobre Nós" },
-              { to: "/contato", label: "Contato" },
+              { to: "/servicos", label: "Nossos Serviços" },
+              { to: "/sobre", label: "Sobre a Empresa" },
+              { to: "/orcamento", label: "Pedir Orçamento" },
+              { to: "/contact", label: "Fale Connosco" },
             ].map(({ to, label }) => (
               <li key={to}>
-                <Link to={to} className="text-sm text-white/60 hover:text-[#00d4ff] transition-colors">
-                  {label}
+                <Link
+                  to={to}
+                  className="group inline-flex items-center gap-1.5 text-sm text-slate-400 hover:text-white transition-colors"
+                >
+                  <span className="w-1.5 h-1.5 rounded-full bg-slate-600 group-hover:bg-[#00d4ff] transition-colors" />
+                  <span>{label}</span>
                 </Link>
               </li>
             ))}
           </ul>
         </div>
 
-        {/* Contact */}
-        <div>
-          <h4 className="text-xs font-bold uppercase tracking-[0.2em] text-white/40 mb-4">Contato</h4>
-          <ul className="space-y-2 text-sm text-white/60">
-            <li>Luanda, Angola</li>
-            <li>+244 947 501 108</li>
-            <li>adijacinto.aj@gmail.com</li>
+        {/* Contact Info */}
+        <div className="md:col-span-4">
+          <h4 className="text-xs font-bold uppercase tracking-[0.2em] text-[#00d4ff] mb-6">Contactos Diretos</h4>
+          <ul className="space-y-4 text-sm text-slate-300">
+            <li className="flex items-start gap-3">
+              <MapPin className="w-5 h-5 text-[#00d4ff] shrink-0 mt-0.5" />
+              <div>
+                <p className="font-medium text-white">Sede Principal</p>
+                <p className="text-slate-400 text-xs mt-0.5">Luanda, Angola</p>
+              </div>
+            </li>
+            <li className="flex items-start gap-3">
+              <Phone className="w-5 h-5 text-[#00d4ff] shrink-0 mt-0.5" />
+              <div>
+                <p className="font-medium text-white">Atendimento / WhatsApp</p>
+                <a href="tel:+244947501108" className="text-slate-400 text-xs hover:text-[#00d4ff] transition-colors">
+                  +244 947 501 108
+                </a>
+              </div>
+            </li>
+            <li className="flex items-start gap-3">
+              <Mail className="w-5 h-5 text-[#00d4ff] shrink-0 mt-0.5" />
+              <div>
+                <p className="font-medium text-white">Email Corporativo</p>
+                <a href="mailto:adijacinto.aj@gmail.com" className="text-slate-400 text-xs hover:text-[#00d4ff] transition-colors">
+                  adijacinto.aj@gmail.com
+                </a>
+              </div>
+            </li>
           </ul>
         </div>
       </div>
 
-      <div className="border-t border-white/5 px-6 py-4 flex flex-col md:flex-row justify-between items-center gap-2">
-        <p className="text-xs text-white/30">© 2026 AdiJacinto. Todos os direitos reservados.</p>
-        <p className="text-xs text-white/20">Feito em Angola 🇦🇴</p>
+      {/* Copyright Bar */}
+      <div className="border-t border-white/5 bg-black/40 px-6 py-5">
+        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-slate-500">
+          <p>© {new Date().getFullYear()} AdiJacinto. Todos os direitos reservados.</p>
+          <p className="flex items-center gap-1.5">
+            <span>Desenvolvido com excelência em Angola</span>
+            <span className="text-base">🇦🇴</span>
+          </p>
+        </div>
       </div>
     </footer>
   );
